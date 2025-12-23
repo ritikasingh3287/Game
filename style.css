@@ -1,74 +1,147 @@
 * {
-    margin: 0;
-    padding: 0;
-  }
-  
-  body {
-    background-color: #548687;
-    text-align: center;
-  }
-  
-  .container {
-    height: 70vh;
-    display: flex;
-  
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .game {
-    height: 60vmin;
-    width: 60vmin;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5vmin;
-  }
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* 🌈 Animated Gradient Background */
+body {
+  min-height: 100vh;
+  background: linear-gradient(-45deg, #f6d365, #fda085, #a1c4fd, #c2e9fb);
+  background-size: 400% 400%;
+  animation: gradientBG 12s ease infinite;
+  text-align: center;
+  transition: background 0.6s;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+body.dark {
+  background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364);
+}
+
+/* 🌙 Theme Toggle */
+.theme-toggle {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  padding: 10px 14px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+/* Layout */
+main {
+  padding-top: 40px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+body.dark h1 {
+  color: #fff;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 🎮 Game Board */
+.game {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  padding: 25px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.3);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  animation: slideUp 0.8s ease;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* 🧊 3D Boxes */
+.box {
+  height: 90px;
+  width: 90px;
+  border-radius: 15px;
+  border: none;
+  font-size: 2.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  background: linear-gradient(145deg, #7a8f1d, #9cb83a);
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+
+.box:hover {
+  transform: translateY(-5px) scale(1.05);
+}
+
+.box:active {
+  transform: scale(0.95);
+}
+
+/* Buttons */
+#reset-btn, #new-btn {
+  margin-top: 25px;
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  background: #04021f;
+  color: white;
+  transition: transform 0.3s;
+}
+
+#reset-btn:hover, #new-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Winner Screen */
+.msg-container {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#msg {
+  font-size: 2rem;
+  color: white;
+}
+
+.hide {
+  display: none;
+}
+
+/* 📱 Mobile Responsive */
+@media (max-width: 500px) {
   .box {
-    height: 18vmin;
-    width: 18vmin;
-    border-radius: 1rem;
-    border: none;
-    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
-    font-size: 8vmin;
-    color: #b0413e;
-    background-color: #ffffc7;
+    height: 70px;
+    width: 70px;
   }
+}
+
   
-  #reset-btn {
-    padding: 1rem;
-    font-size: 1.25rem;
-    background-color: #191913;
-    color: #fff;
-    border-radius: 1rem;
-    border: none;
-  }
-  
-  #new-btn {
-    padding: 1rem;
-    font-size: 1.25rem;
-    background-color: #191913;
-    color: #fff;
-    border-radius: 1rem;
-    border: none;
-  }
-  
-  #msg {
-    color: #ffffc7;
-    font-size: 5vmin;
-  }
-  
-  .msg-container {
-    height: 100vmin;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 4rem;
-  }
-  
-  .hide {
-    display: none;
-  }
